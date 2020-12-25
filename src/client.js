@@ -5,7 +5,8 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 const apolloClient = new ApolloClient({
   ssrForceFetchDelay: 100,
   link: new HttpLink({
-    uri: 'https://m5j9784k8j.sse.codesandbox.io',
+    // uri: 'https://m5j9784k8j.sse.codesandbox.io',
+    uri: 'http://localhost:4000',
   }),
   cache: new InMemoryCache().restore(window.__APOLLO_STATE__),
 });

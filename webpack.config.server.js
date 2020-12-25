@@ -9,6 +9,7 @@ module.exports = {
   },
   resolve: {
     modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+    extensions: ['.js', '.jsx', '.less']
   },
   target: 'node',
   node: {
@@ -17,6 +18,20 @@ module.exports = {
   externals: [nodeExternals()],
   module: {
     rules: [
+
+      {
+        test: /\.css$/,
+        use: [
+          'isomorphic-style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1
+            }
+          },
+          'postcss-loader'
+        ]
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -34,3 +49,52 @@ module.exports = {
     ],
   },
 };
+
+
+///////////////////////////
+
+          // {
+          //   test: /\.less$/,
+          //   use:[
+          //     {
+          //       loader: 'less-loader',
+          //       options: {
+          //         modifyVars: {}, // custom theme overrides go here...
+          //         javascriptEnabled: true
+          //       }
+          //     }
+          //   ]
+          // },
+
+/////////////////////////
+
+
+// {
+// test: /\.less$/,
+// use: ['isomorphic-style-loader', { loader: 'less-loader' }]
+// },
+//////////////////////////
+
+// {
+// test: /\.css$/,
+// use: ['isomorphic-style-loader', { loader: 'css-loader' }]
+// },
+
+/////////////
+
+      // {
+      //     test: /\.less$/,
+      //     use: [
+      //         {
+      //             loader: 'style-loader'
+      //         }, {
+      //             loader: 'css-loader'
+      //         },
+      //         {
+      //             loader: 'less-loader',
+      //             options: {
+      //                 javascriptEnabled: true
+      //             }
+      //         }
+      //         ]
+      // },

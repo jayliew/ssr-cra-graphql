@@ -24,7 +24,8 @@ app.use(async (req, res) => {
   const client = new ApolloClient({
     ssrMode: true,
     link: new HttpLink({
-      uri: 'https://m5j9784k8j.sse.codesandbox.io',
+      //uri: 'https://m5j9784k8j.sse.codesandbox.io',
+      uri: 'http://localhost:4000',
     }),
     cache: new InMemoryCache(),
   });
@@ -50,6 +51,8 @@ app.use(async (req, res) => {
 });
 
 const port = process.env.PORT || 8888;
+
+console.log(`ssr-cra-gql server.js`);
 
 app.listen(port, () => {
   console.log(`Server listening on ${port} port`);
